@@ -1,0 +1,40 @@
+# Conveyor Keyboard Control Node Parameters
+conveyor_keyboard_control:
+  ros__parameters:
+    conveyor:
+      # Conveyor belt speed in m/s when running
+      velocity: 0.4
+      # List of USD prim paths to the conveyor belt OmniGraphs in Isaac Sim
+      prim_paths:
+        - "/World/ConveyorBelts/ConveyorTrack/ConveyorBeltGraph"
+        - "/World/ConveyorBelts/ConveyorTrack_01/ConveyorBeltGraph"
+
+# Lightbeam Conveyor Stop Node Parameters
+lightbeam_conveyor_stop:
+  ros__parameters:
+    conveyor:
+      # List of USD prim paths to the conveyor belt OmniGraphs to stop
+      prim_paths:
+        - "/World/ConveyorBelts/ConveyorTrack/ConveyorBeltGraph"
+        - "/World/ConveyorBelts/ConveyorTrack_01/ConveyorBeltGraph"
+      # Initial conveyor velocity in m/s when simulation starts
+      initial_velocity: 0.4
+    lightbeam:
+      # Distance threshold in meters. If depth < threshold, object is detected
+      # Should match the maxRange of the LightBeam sensor in Isaac Sim
+      depth_threshold: 1.0
+      # ROS2 topic name where lightbeam depth data is published (Float32MultiArray)
+      topic: "/lightbeam_hit"
+    box:
+      # USD prim paths of boxes to pick IN ORDER.
+      # IMPORTANT: List boxes in the order they will reach the lightbeam sensor.
+      # The first box to be detected should be first in the list.
+      prim_paths:
+        - "/World/Boxes/target_cube"
+        - "/World/Boxes/target_cube_01"
+        - "/World/Boxes/target_cube_02"
+        - "/World/Boxes/target_cube_03"
+        - "/World/Boxes/target_cube_04"
+        - "/World/Boxes/target_cube_05"
+    # Robot base link for IK reference frame (world transform computed from hierarchy)
+    ik_base_link: "/World/Robot/ur5/ur5_robot/base_link_inertia"

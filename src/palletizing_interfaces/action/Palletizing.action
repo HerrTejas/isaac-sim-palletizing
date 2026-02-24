@@ -1,0 +1,12 @@
+# Goal: Box positions for pick and place
+geometry_msgs/Pose box_start_pose
+geometry_msgs/Pose box_target_pose
+---
+# Result: Operation status
+int32 SUCCESS=0
+int32 FAILED=1
+int32 error_code
+string error_string
+---
+# Feedback: Current end effector pose
+geometry_msgs/Pose end_effector_pose

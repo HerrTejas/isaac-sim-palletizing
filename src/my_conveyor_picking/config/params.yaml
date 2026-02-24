@@ -1,0 +1,40 @@
+ur5_controller_server:
+  ros__parameters:
+    joint_names: ["shoulder_pan_joint", "shoulder_lift_joint", "elbow_joint",
+                  "wrist_1_joint", "wrist_2_joint", "wrist_3_joint"]
+    trajectory_type: 2 # 1 for cubic interpolation
+                       # 2 for quintic interpolation
+                       # 3 for LSPB
+                       # 4 for Minimum Time Trajectories (Spong)
+    trajectory_tolerance_error: 0.002 # Tolerance error per joint in radians
+    trajectory_timeout: 10 # Timeout for trajectory execution in seconds
+                           # Must be greater than the trajectory time set
+                           # in the ur5_isaac_ros2 node
+    ik_base_link: /World/Robot/ur5/ur5_robot/base_link_inertia
+
+palletizing_server:
+  ros__parameters:
+    joint_names: ["shoulder_pan_joint", "shoulder_lift_joint", "elbow_joint",
+                  "wrist_1_joint", "wrist_2_joint", "wrist_3_joint"]
+    trajectory_time_slow: 5
+    trajectory_time_fast: 2
+    starting_pile_position: [0.2120, -0.49173, 0.04961]  # First box center [x, y, z]
+    # Gap between adjacent boxes (positive = add space, negative = reduce space)
+    x_gap: 0.01     # Gap between boxes along X axis
+    y_gap: 0.01     # Gap between boxes along Y axis
+    z_gap: 0.003     # Gap between boxes along Z axis
+    # Stacking direction multiplier (-1 or 1) for each axis
+    x_direction: -1  # -1 = stack in -X direction, 1 = stack in +X direction
+    y_direction: -1  # -1 = stack in -Y direction, 1 = stack in +Y direction
+    z_direction: 1   # 1 = stack upward (+Z), -1 = stack downward
+    box_x_count: 2   # Number of boxes along X axis
+    box_y_count: 2   # Number of boxes along Y axis
+    box_z_count: 2   # Number of layers (Z axis)
+    box_size: [0.2, 0.2, 0.1]   # Box dimensions [x, y, z] in meters
+    # Height offsets (in meters) with respect to the robot base frame (Z-axis)
+    safe_approach_height: 0.3  # Z offset for safe approach/retract above box
+    gripper_contact_height: 0.045     # Z offset where gripper contacts the box
+    place_release_offset: 0.003       # Additional Z offset when placing box
+    end_effector_offset:
+      position: [0.0, 0.0, 0.1359]    # [x, y, z] in meters (converted from cm)
+      orientation: [0.0, 0.0, 180.0]  # [roll, pitch, yaw] in degrees

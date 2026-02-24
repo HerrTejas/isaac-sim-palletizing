@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>my_conveyor_picking</name>
+  <version>1.0.0</version>
+  <description>ROS@ package for Keyboard-based Conveyor</description>
+  <maintainer email="herrtejasmurkute@gmail.com">herrtejas</maintainer>
+  <license>TODO: License declaration</license>
+
+  <depend>rclpy</depend>
+  <depend>isaac_ross2_messages</depend>
+  <depend>isaac_ros2_messages</depend>
+  <depend>palletizing_interfaces</depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
